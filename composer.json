@@ -32,6 +32,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "changelog": "auto-changelog --breaking-pattern 'breaking change:' --unreleased --output CHANGELOG.md --template keepachangelog"
     }
 }

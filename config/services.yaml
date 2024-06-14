@@ -1,0 +1,17 @@
+parameters:
+  jormallsms.senderid: '%env(string:JORMALLSMS_SENDERID)%'
+  jormallsms.accname: '%env(string:JORMALLSMS_ACCNAME)%'
+  jormallsms.accpass: '%env(string:JORMALLSMS_ACCPASS)%'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+  Extendy\JormallSmsBundle\Service\JormallSmsService:
+    arguments:
+      $senderid: '%jormallsms.senderid%'
+      $accname: '%jormallsms.accname%'
+      $accpass: '%jormallsms.accpass%'
+
+
+

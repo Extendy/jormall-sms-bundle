@@ -2,6 +2,7 @@ parameters:
   jormallsms.senderid: '%env(string:JORMALLSMS_SENDERID)%'
   jormallsms.accname: '%env(string:JORMALLSMS_ACCNAME)%'
   jormallsms.accpass: '%env(string:JORMALLSMS_ACCPASS)%'
+  jormallsms.sendsmsurl: 'https://josmsservice.com/SMSServices/Clients/Prof/H_SingleSMS_General/SMSService.asmx/SendSMS'
 
 services:
   _defaults:
@@ -12,6 +13,7 @@ services:
       $senderid: '%jormallsms.senderid%'
       $accname: '%jormallsms.accname%'
       $accpass: '%jormallsms.accpass%'
+      $sendsmsUrl: '%jormallsms.sendsmsurl%'
 
 
 

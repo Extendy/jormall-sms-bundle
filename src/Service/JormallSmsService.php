@@ -14,14 +14,17 @@ class JormallSmsService
 
     private $sendsmsUrl;
 
+    private $getbalanceUrl;
 
-    public function __construct(string $senderid, string $accname, string $accpass, string $sendsmsUrl)
+
+    public function __construct(string $senderid, string $accname, string $accpass, string $sendsmsUrl, string $getbalanceUrl)
     {
         $this->httpClient = new Client();
         $this->senderid = $senderid;
         $this->accname = $accname;
         $this->accpass = $accpass;
         $this->sendsmsUrl = $sendsmsUrl;
+        $this->getbalanceUrl = $getbalanceUrl;
     }
 
     /**
@@ -96,6 +99,61 @@ class JormallSmsService
             // $this->logger->error('Unexpected error', ['exception' => $e]);
             $returnArray['status'] = false;
             $returnArray['msg'] = 'Unexpected error:' . $e->getMessage();
+        }
+
+        return $returnArray;
+    }
+
+    /**
+     * Get the balance of the account
+     * The function will return an array with the status of the request
+     * The array will contain the following
+     * status: true if the balance was retrieved successfully, false if the balance was not retrieved
+     * balance: the current balance of the account
+     * The function will throw an exception if there is a connection error or a request error
+     * The function will catch the exception and return an array with the status of the request
+     * @return array ['status' => true|false, 'balance' => 9994]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getBalance(): array
+    {
+        $returnArray = [];
+        try {
+            $response = $this->httpClient->request('GET', $this->getbalanceUrl, [
+                'query' => [
+                    'AccName' => $this->accname,
+                    'AccPass' => $this->accpass,
+                ]
+            ]);
+            //the response will be text format , for example "9994"
+            //which meam 9994 pint the current balance
+            //so i will to make the response as integer
+            //i will remove "" from the response
+            //and return it as integer
+            $balanceString = $response->getBody()->getContents();
+            $balance = str_replace('"', '', $balanceString);
+            $balance = (int)$balance;
+            $returnArray['status'] = true;
+            $returnArray['balance'] = $balance;
+
+        } catch (ConnectException $e) {
+            // Handle connection errors, such as DNS resolution failures
+            // Log the error and return a custom response or rethrow the exception
+            // For example:
+            // $this->logger->error('SMS service connection error', ['exception' => $e])
+            $returnArray['status'] = false;
+        } catch (RequestException $e) {
+            // Handle other request-related errors
+            // Log the error and return a custom response or rethrow the exception
+            // For example:
+            // $this->logger->error('SMS service request error', ['exception' => $e]);
+            $returnArray['status'] = false;
+        } catch (\Exception $e) {
+            // Handle any other errors
+            // Log the error and return a custom response or rethrow the exception
+            // For example:
+            // $this->logger->error('Unexpected error', ['exception' => $e]);
+            $returnArray['status'] = false;
         }
 
         return $returnArray;

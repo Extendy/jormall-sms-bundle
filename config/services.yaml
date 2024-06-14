@@ -3,6 +3,7 @@ parameters:
   jormallsms.accname: '%env(string:JORMALLSMS_ACCNAME)%'
   jormallsms.accpass: '%env(string:JORMALLSMS_ACCPASS)%'
   jormallsms.sendsmsurl: 'https://josmsservice.com/SMSServices/Clients/Prof/H_SingleSMS_General/SMSService.asmx/SendSMS'
+  jormallsms.getbalanceurl: 'https://josmsservice.com/SMS/API/GetBalance'
 
 services:
   _defaults:
@@ -14,6 +15,7 @@ services:
       $accname: '%jormallsms.accname%'
       $accpass: '%jormallsms.accpass%'
       $sendsmsUrl: '%jormallsms.sendsmsurl%'
+      $getbalanceUrl: '%jormallsms.getbalanceurl%'
 
 
 

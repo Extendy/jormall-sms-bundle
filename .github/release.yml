@@ -1,0 +1,32 @@
+changelog:
+  exclude:
+    authors:
+      - dependabot
+  categories:
+    - title: Breaking Changes
+      labels:
+        - 'breaking change'
+    - title: Bug Fixes
+      labels:
+        - bug
+    - title: Enhancements
+      labels:
+        - enhancement
+    - title: Translations
+      labels:
+        - lang
+    - title: New Features
+      labels:
+        - 'new feature'
+    - title: Database Changes need Database Update
+      labels:
+        - 'database changed'
+    - title: Documentation
+      labels:
+        - 'documentation'
+    - title: Update a dependencies
+      labels:
+        - 'dependencies'
+    - title: Others (Only for checking. Remove this category)
+      labels:
+        - "*" # all labels

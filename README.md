@@ -13,6 +13,9 @@ This is a Symfony bundle that provides an easy way to send SMS using the [Jormal
 - PHP 8.2 or higher
 - GuzzleHttp 7.8 or higher
 - Symfony Framework Bundle 7.0 or higher
+- User must have an active SMS account with JorMall
+- The SMS account must have SMS balance.
+- The used sender through this web service must be registered by JorMall before its being used.
 
 ## Installation
 

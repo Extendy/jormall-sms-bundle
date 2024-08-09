@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\RequestException;
 
 class JormallSmsService
 {
+    private Client $httpClient;
     private $senderid;
     private $accname;
     private $accpass;

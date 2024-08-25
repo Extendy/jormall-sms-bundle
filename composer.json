@@ -1,6 +1,6 @@
 {
     "name": "extendy/jormall-sms-bundle",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A Symfony bundle to send SMS using Jormall SMS API",
     "type": "symfony-bundle",
     "license": "MIT",
